@@ -1,6 +1,9 @@
 #!/usr/bin/env python
 
 """App Groups module for SimpleMDMpy"""
+
+"""App Groups are no longer used by SimpleMDM"""
+
 #pylint: disable=invalid-name
 
 import SimpleMDMpy.SimpleMDM

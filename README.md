@@ -1,8 +1,27 @@
 # SimpleMDMpy
 
+Forked from simpleMDMpy by [SteveKueng](https://github.com/SteveKueng) 
+
 python lib for simpleMDM API
 
 https://simplemdm.com/docs/api
+
+
+## Updates
+
+This repo is focused on adding functionality to the simpleMDMpy python scripts, as well as adding new support for new features reflected in simpleMDM's updated API. 
+
+As the API is always evolving, this repo will hopefully also always be evolving.
+
+
+### Deprecated Modules
+
+- Device Groups
+- App Groups
+
+### Updated Modules
+
+- Assignment Groups
 
 ## Install
 

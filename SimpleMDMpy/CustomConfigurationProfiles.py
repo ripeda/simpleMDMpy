@@ -28,7 +28,7 @@ class CustomConfigurationProfiles(SimpleMDMpy.SimpleMDM.Connection):
         return self._post_data(url, data, files)
 
     def update_profile(self, profile_id, name=None, mobileconfig=None, # pylint: disable=too-many-arguments
-                       user_scope=None, attribute_support=None):
+        user_scope=None, attribute_support=None):
         """update a config file"""
         url = self.url + "/" + profile_id
         data = {}
@@ -49,13 +49,3 @@ class CustomConfigurationProfiles(SimpleMDMpy.SimpleMDM.Connection):
         url = self.url + "/" + profile_id
         return self._delete_data(url)
 
-    def assign_to_device_group(self, profile_id, device_group_id):
-        """assigns custom profile to group"""
-        url = self.url + "/" + profile_id + "/device_groups/" + device_group_id
-        data = {}
-        return self._post_data(url, data)
-
-    def unassign_from_device_group(self, profile_id, device_group_id):
-        """deletes profile from device group"""
-        url = self.url + "/" + profile_id + "/device_groups/" + device_group_id
-        return self._delete_data(url)

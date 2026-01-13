@@ -24,33 +24,24 @@ class AssignmentGroups(SimpleMDMpy.SimpleMDM.Connection):
         data = {'name': name, 'auto_deploy': auto_deploy}
         return self._post_data(url, data)
 
-    def update_assignment_group(self, assignment_group_id, name, auto_deploy):
-        """updates an assignment group"""
-        url = self.url + "/" + assignment_group_id
-        data = {'name': name, 'auto_deploy': auto_deploy}
-        return self._patch_data(url, data)
-
     def delete_assignment_group(self, assignment_group_id):
         """delete an app to an assignment group"""
         url = self.url + "/" + assignment_group_id
         return self._delete_data(url)
 
-    def assign_app(self, assignment_group_id, app_id):
+    def assign_app(self, assignment_group_id, app_id, deployment_type, install_type):
         """assign app to an assignment group"""
+        # deployment_type: 'standard' or 'munki'
+        # install_type: 'managed', 'self_serve', 'default_installs' or 'managed_updates'
+        # Defaults to managed.
         url = self.url + "/" + assignment_group_id + "/apps/" + app_id
-        data = {}
+        data = {'deployment_type': deployment_type, 'install_type': install_type}
         return self._post_data(url, data)
 
     def unassign_app(self, assignment_group_id, app_id):
         """unassign app to an assignment group"""
         url = self.url + "/" + assignment_group_id + "/apps/" + app_id
         return self._delete_data(url)
-
-    def assign_device_group(self, assignment_group_id, device_group_id):
-        """assigns a device group"""
-        url = self.url + "/" + assignment_group_id + "/device_groups/" + device_group_id
-        data = {}
-        return self._post_data(url, data)
 
     def unassign_device_group(self, assignment_group_id, device_group_id):
         """delete a device group assignment"""
@@ -78,4 +69,27 @@ class AssignmentGroups(SimpleMDMpy.SimpleMDM.Connection):
         """update apps in an assignment group"""
         url = self.url + "/" + assignment_group_id + "/update_apps"
         data = {}
+        return self._post_data(url, data)
+
+    def assign_profile(self, assignment_group_id, profile_id):
+        """assign profile to an assignment group"""
+        url = self.url + "/" + assignment_group_id + "/profiles/" + str(profile_id)
+        data = {}
+        return self._post_data(url, data)
+    
+    def unassign_profile(self, assignment_group_id, profile_id):
+        """unassign profile to an assignment group"""
+        url = self.url + "/" + assignment_group_id + "/profiles/" + str(profile_id)
+        return self._delete_data(url)
+    
+    def sync_profiles(self, assignment_group_id):
+        """sync profiles in an assignment group"""
+        url = self.url + "/" + assignment_group_id + "/sync_profiles"
+        data = {}
+        return self._post_data(url, data)
+    
+    def clone_assignment_group(self, assignment_group_id, name):
+        """clone an assignment group"""
+        url = self.url + "/" + assignment_group_id + "/clone"
+        data = {'name': name}
         return self._post_data(url, data)

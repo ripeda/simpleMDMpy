@@ -3,6 +3,8 @@
 """device groups module for SimpleMDMpy"""
 #pylint: disable=invalid-name
 
+"""device groups have been deprecated, most functionality has been moved to assignment groups"""
+
 import SimpleMDMpy.SimpleMDM
 
 class DeviceGroups(SimpleMDMpy.SimpleMDM.Connection):
